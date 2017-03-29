@@ -8,10 +8,11 @@ import javax.swing.*;
  * @author ericlabouve
  */
 public class RootbeerBehind implements ActionListener {
-    private JPanel mainPanel; 
-     
+    private JPanel mainPanel;
     private JTextArea textAreaOutput;
     private JTextArea textAreaInput;
+
+    private static final String STARTING_TEXT = "Lenoy Sucks!!!";
     
     public void addComponentToPane(Container pane) {
         JPanel textFieldPane = new JPanel(); //use FlowLayout
@@ -19,7 +20,7 @@ public class RootbeerBehind implements ActionListener {
         
         // Output
         textAreaOutput = new JTextArea(10, 40);
-        textAreaOutput.setText("Test\n");
+        textAreaOutput.setText(STARTING_TEXT);
         JScrollPane scrollPaneOutput = new JScrollPane(textAreaOutput); 
         textAreaOutput.setEditable(false);
         textFieldPane.add(scrollPaneOutput);
@@ -48,7 +49,7 @@ public class RootbeerBehind implements ActionListener {
         pane.add(mainPanel, BorderLayout.CENTER);
     }
     
-    @Override
+    //@Override
     public void actionPerformed(ActionEvent e) {
         textAreaOutput.setText("");
     }
