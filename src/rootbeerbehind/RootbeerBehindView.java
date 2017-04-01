@@ -16,7 +16,7 @@ public class RootbeerBehindView extends JFrame implements Observer {
     private JButton submitButton;
 
     private static final String STARTING_INPUT_TEXT = "> ";
-    private static final String STARTING_OUTPUT_TEXT = "Lenoy Sucks!!!";
+    private static final String STARTING_OUTPUT_TEXT = "Lenoy Sucks!";
 
     public RootbeerBehindView (ActionListener controller) {
         // Set up parent frame
