@@ -65,6 +65,11 @@ public class RootbeerBehindView extends JFrame implements Observer {
         contentPane.add(mainPanel, BorderLayout.CENTER);
     }
 
+    /**
+     * Used to update the view when the model has changed
+     * @param obs = The model
+     * @param arg = An Action Command passed from the model
+     */
     public void update(Observable obs, Object arg)
     {
         String message = (String) arg;
@@ -72,5 +77,13 @@ public class RootbeerBehindView extends JFrame implements Observer {
             textAreaOutput.setText(textAreaInput.getText().substring(STARTING_INPUT_TEXT.length()));
             textAreaInput.setText(STARTING_INPUT_TEXT);
         }
+    }
+
+    public String getOutputText() {
+        return textAreaOutput.getText();
+    }
+
+    public String getInputText() {
+        return textAreaInput.getText();
     }
 }
