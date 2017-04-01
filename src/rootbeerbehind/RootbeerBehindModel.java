@@ -9,7 +9,7 @@ import java.util.Observable;
 public class RootbeerBehindModel extends Observable {
 
     /**
-     * Action occurs when Submit button is pressed
+     * Action occurs when Submit button is pressed to notify view to update itself
      */
     public void submit() {
         setChanged();
