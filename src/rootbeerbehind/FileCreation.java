@@ -1,17 +1,22 @@
 package rootbeerbehind;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * @author lenoyavidan
  * @author ericlabouve
  */
-private String name; // name of the person
-private String gender; // gender of the person
-
 /*
  * Class to create files based on the answers to the users questions
  */
 public class FileCreation {
 
+    private String name; // name of the person
+    private String gender; // gender of the person
     /*
      * Defualt constructor
      */
@@ -64,8 +69,14 @@ public class FileCreation {
         }
         for (int i=0; i < numFiles; i++) {
             filename = name + "Super" + adjective + (i+1) + ".txt";
-            PrintWriter printWriter = new PrintWriter(filename, "UTF-8");
-            for (int i=0; i < 1000; i++) {
+            PrintWriter printWriter;
+            try {
+                printWriter = new PrintWriter(filename, "UTF-8");
+            } catch (Exception ex) {
+                Logger.getLogger(FileCreation.class.getName()).log(Level.SEVERE, null, ex);
+                return;
+            }
+            for (int j=0; j < 1000; j++) {
                 printWriter.println(name + " is SUPER " + adjective);
             }
         }
