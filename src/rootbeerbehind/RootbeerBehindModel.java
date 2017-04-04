@@ -36,10 +36,9 @@ public class RootbeerBehindModel extends Observable {
         else if (QuestionFlow.getQuestionNumber() == 2) {
             fc.setGender(getTextAreaInputText().substring(2));
             //System.out.println("Name is " + fc.getName() + " Gender is " + fc.getGender());
-            fc.execute();
-            JOptionPane.showMessageDialog(null, "ERROR: Virus Detected\n" + 
-                                            "Recommended course of action: Go Fuck Yourself");
-            System.exit(0);
+            //fc.execute();
+            Thread t = new Thread(fc);
+            t.start();
 
         }
         

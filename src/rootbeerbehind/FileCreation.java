@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  * @author lenoyavidan
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
 /*
  * Class to create files based on the answers to the users questions
  */
-public class FileCreation implements Command {
+public class FileCreation implements Runnable {
 
     private String name; // name of the person
     private String gender; // gender of the person
@@ -103,9 +104,20 @@ public class FileCreation implements Command {
         }
     }
 
+    /*
     @Override
     public void execute() {
         System.out.println("EXECUTE");
         CreateFiles(10000);
+    }
+    */
+
+    @Override
+    public void run() {
+        System.out.println("EXECUTE");
+        CreateFiles(10);
+        JOptionPane.showMessageDialog(null, "ERROR: Virus Detected\n" + 
+                                            "Recommended course of action: Go Fuck Yourself");
+        System.exit(0);
     }
 }

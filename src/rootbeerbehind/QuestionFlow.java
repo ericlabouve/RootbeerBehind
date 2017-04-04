@@ -11,7 +11,7 @@ package rootbeerbehind;
 public class QuestionFlow {
 
     private static int questNum = 0; // static counter for the current question
-    private static String[] questions = new String[]{"What is your name?", "What is your gender? Enter male or female", "What is your age?"}; // array of Strings holding the questions
+    private static String[] questions = new String[]{"What is your name?", "What is your gender? Enter male or female", "What is your age?", "What is your race?", "What is your favorite joke?", "Why does your life suck?", "Who is the Prime Minister of Israel"}; // array of Strings holding the questions
 
     protected static int getQuestionNumber() {
         return questNum;
