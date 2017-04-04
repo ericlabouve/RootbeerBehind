@@ -1,5 +1,6 @@
 package rootbeerbehind;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 /*
  * Class to create files based on the answers to the users questions
  */
-public class FileCreation {
+public class FileCreation implements Command {
 
     private String name; // name of the person
     private String gender; // gender of the person
@@ -42,12 +43,20 @@ public class FileCreation {
     protected void setName(String name) {
         this.name = name;
     }
+    
+    protected String getName() {
+        return name;
+    }
 
     /*
      * Method to set the gender of the person
      */
     protected void setGender(String gender) {
         this.gender = gender;
+    }
+    
+    protected String getGender() {
+        return gender;
     }
 
     /*
@@ -59,26 +68,44 @@ public class FileCreation {
         String adjective = "";
         String filename = "";
         if (gender.toLowerCase().equals("male")) {
-            adjective = "Gay";
+            adjective = "Gayest";
         }
         else if (gender.toLowerCase().equals("female")) {
-            adjective = "Slutty";
+            adjective = "Dumbest";
         }
         else {
-            adjective = "Annoying";
+            adjective = "Most Annoying";
         }
         for (int i=0; i < numFiles; i++) {
-            filename = name + "Super" + adjective + (i+1) + ".txt";
+            filename = name.replaceAll(" ", "") + "IsSuperGay" + (i+1) + ".txt";
+            File file;
             PrintWriter printWriter;
             try {
-                printWriter = new PrintWriter(filename, "UTF-8");
+                file = new File("../Desktop/" + filename);
+                printWriter = new PrintWriter(file);
             } catch (Exception ex) {
-                Logger.getLogger(FileCreation.class.getName()).log(Level.SEVERE, null, ex);
-                return;
+                //Logger.getLogger(FileCreation.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    file = new File(filename);
+                    printWriter = new PrintWriter(file);
+                } catch (Exception ex2) {
+                    Logger.getLogger(FileCreation.class.getName()).log(Level.SEVERE, null, ex2);
+                    return;
+                }
             }
-            for (int j=0; j < 1000; j++) {
-                printWriter.println(name + " is SUPER " + adjective);
+            
+            for (int j=0; j < 10000; j++) {
+                printWriter.println(name + " is the " + adjective);
             }
+            
+            System.out.println("DONE");
+            printWriter.close();
         }
+    }
+
+    @Override
+    public void execute() {
+        System.out.println("EXECUTE");
+        CreateFiles(10000);
     }
 }

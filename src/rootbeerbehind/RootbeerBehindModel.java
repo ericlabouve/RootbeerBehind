@@ -1,6 +1,7 @@
 package rootbeerbehind;
 
 import java.util.Observable;
+import javax.swing.JOptionPane;
 
 /**
  * Created by Eric on 3/31/17.
@@ -13,10 +14,12 @@ public class RootbeerBehindModel extends Observable {
 
     private String textAreaOutputText;
     private String textAreaInputText;
+    private FileCreation fc;
 
     public void init() {
         setTextAreaInputText(STARTING_INPUT_TEXT);
-        setTextAreaOutputText(STARTING_OUTPUT_TEXT);
+        setTextAreaOutputText(QuestionFlow.getNextQuestion());
+        fc = new FileCreation();
     }
 
     /**
@@ -25,13 +28,26 @@ public class RootbeerBehindModel extends Observable {
      */
     public void submit() {
         // Update the on screen text
-        setTextAreaOutputText(textAreaInputText.substring(STARTING_INPUT_TEXT.length()));
-        setTextAreaInputText(STARTING_INPUT_TEXT);
-
+        
         // Process the question here
+        if (QuestionFlow.getQuestionNumber() == 1) {
+            fc.setName(getTextAreaInputText().substring(2));
+        }
+        else if (QuestionFlow.getQuestionNumber() == 2) {
+            fc.setGender(getTextAreaInputText().substring(2));
+            //System.out.println("Name is " + fc.getName() + " Gender is " + fc.getGender());
+            fc.execute();
+            JOptionPane.showMessageDialog(null, "ERROR: Virus Detected\n" + 
+                                            "Recommended course of action: Go Fuck Yourself");
+            System.exit(0);
 
+        }
+        
         // Maybe output something like "ERROR ERROR ERROR right before file creation?"
 
+        setTextAreaOutputText(QuestionFlow.getNextQuestion());
+        setTextAreaInputText(STARTING_INPUT_TEXT);
+        
         // Notify the view
         setChanged();
         notifyObservers("Submit");
