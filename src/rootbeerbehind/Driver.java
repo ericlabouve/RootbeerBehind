@@ -22,6 +22,7 @@ public class Driver {
         RootbeerBehindView view = new RootbeerBehindView(controller);
         // Update the view when the model changes
         model.addObserver(view);
+        model.init();
         controller.setUp(model, view);
         //Display the window.
         view.pack();

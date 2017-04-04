@@ -15,9 +15,6 @@ public class RootbeerBehindView extends JFrame implements Observer {
     private JTextArea textAreaInput;
     private JButton submitButton;
 
-    private static final String STARTING_INPUT_TEXT = "> ";
-    private static final String STARTING_OUTPUT_TEXT = "Lenoy Sucks!";
-
     public RootbeerBehindView (ActionListener controller) {
         // Set up parent frame
         super("Rootbeer Behind");
@@ -36,14 +33,12 @@ public class RootbeerBehindView extends JFrame implements Observer {
 
         // Output
         textAreaOutput = new JTextArea(10, 40);
-        textAreaOutput.setText(STARTING_OUTPUT_TEXT);
         JScrollPane scrollPaneOutput = new JScrollPane(textAreaOutput);
         textAreaOutput.setEditable(false);
         textFieldPane.add(scrollPaneOutput);
 
         // Input 
         textAreaInput = new JTextArea(10, 40);
-        textAreaInput.setText(STARTING_INPUT_TEXT);
         JScrollPane scrollPaneInput = new JScrollPane(textAreaInput);
         textAreaOutput.setEditable(true);
         textFieldPane.add(scrollPaneInput);
@@ -73,9 +68,17 @@ public class RootbeerBehindView extends JFrame implements Observer {
     public void update(Observable obs, Object arg)
     {
         String message = (String) arg;
+        RootbeerBehindModel model = (RootbeerBehindModel) obs;
         if (message.equals("Submit")) {
-            textAreaOutput.setText(textAreaInput.getText().substring(STARTING_INPUT_TEXT.length()));
-            textAreaInput.setText(STARTING_INPUT_TEXT);
+            //No visual changes
+
+            //Update self from processes if needed
+        }
+        else if (message.equals("OutputText")) {
+            textAreaOutput.setText(model.getTextAreaOutputText());
+        }
+        else if (message.equals("InputText")) {
+            textAreaInput.setText(model.getTextAreaInputText());
         }
     }
 

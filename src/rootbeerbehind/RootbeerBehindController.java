@@ -21,6 +21,8 @@ public class RootbeerBehindController implements ActionListener {
         String cmd = e.getActionCommand();
         if (cmd.equals("Submit"))
         {
+            model.setTextAreaInputText(view.getInputText());
+            model.setTextAreaOutputText(view.getOutputText());
             model.submit();
         }
     }
